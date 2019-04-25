@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { fetchDogById, editDog } from "../../utils";
 
-class DogList extends Component {
+class DogEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,7 +11,8 @@ class DogList extends Component {
   }
 
   componentDidMount() {
-    fetchDogById(0).then(data => {
+    const { id } = this.props.match.params;
+    fetchDogById(id).then(data => {
       this.setState({
         dog: data,
         name: data.name,
@@ -25,7 +27,13 @@ class DogList extends Component {
   };
 
   handleSave = () => {
-    editDog(0, this.state.name, this.state.description);
+    const { dog, name, description } = this.state;
+    const { history } = this.props;
+    if (name !== "" && description !== "") {
+      editDog(dog.id, this.state.name, this.state.description).then(response =>
+        history.push(`/dogs/${response.id}`)
+      );
+    } else alert("Wrong input");
   };
 
   render() {
@@ -48,9 +56,12 @@ class DogList extends Component {
           />
         </div>
         <button onClick={this.handleSave}>Save</button>
+        <Link to={`/dogs`}>
+          <button onClick={this.handleSave}>Close</button>
+        </Link>
       </div>
     );
   }
 }
 
-export default DogList;
+export default DogEdit;

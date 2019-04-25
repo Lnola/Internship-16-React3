@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { fetchDogs } from "../../utils";
+import { Link } from "react-router-dom";
+import { fetchDogs, deleteDog } from "../../utils";
 
 class DogList extends Component {
   constructor(props) {
@@ -15,15 +16,39 @@ class DogList extends Component {
     });
   }
 
+  handleDelete = dog => {
+    const { id } = dog;
+    deleteDog(id);
+  };
+
   render() {
     const { dogList } = this.state;
     if (dogList === null) return null;
+
+    this.componentDidMount();
     return (
       <div>
         <h1>All dogs:</h1>
         {dogList.map((dog, index) => (
-          <p key={index}>{dog.name}</p>
+          <div>
+            <span key={index}>{dog.name} </span>
+            <Link to={`/dogs/${dog.id}`}>
+              <button>Details</button>
+            </Link>
+            <Link to={`/dogs/edit/${dog.id}`}>
+              <button>Edit</button>
+            </Link>
+            <Link to="/dogs">
+              <button onClick={() => this.handleDelete(dog)}>Delete</button>
+            </Link>
+          </div>
         ))}
+        <Link to={`/dogs/create`}>
+          <button>Create</button>
+        </Link>
+        <Link to="/main">
+          <button>Close</button>
+        </Link>
       </div>
     );
   }
