@@ -61,11 +61,5 @@
       "id": 12
     }
   ],
-  "cats": [
-    {
-      "id": 0,
-      "name": "Octo",
-      "description": "It's not a dog."
-    }
-  ]
+  "cats": []
 }

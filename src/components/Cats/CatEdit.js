@@ -1,20 +1,20 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { editAnimal, fetchAnimalById } from "../../utils";
+import { fetchAnimalById, editAnimal } from "../../utils";
 
-class DogEdit extends Component {
+class CatEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dog: null
+      cat: null
     };
   }
 
   componentDidMount() {
     const { id } = this.props.match.params;
-    fetchAnimalById("dogs", id).then(data => {
+    fetchAnimalById("cats", id).then(data => {
       this.setState({
-        dog: data,
+        cat: data,
         name: data.name,
         description: data.description
       });
@@ -27,18 +27,18 @@ class DogEdit extends Component {
   };
 
   handleSave = () => {
-    const { dog, name, description } = this.state;
+    const { cat, name, description } = this.state;
     const { history } = this.props;
     if (name !== "" && description !== "") {
-      editAnimal("dogs", dog.id, this.state.name, this.state.description).then(
-        response => history.push(`/dogs/${response.id}`)
+      editAnimal("cats", cat.id, this.state.name, this.state.description).then(
+        response => history.push(`/cats/${response.id}`)
       );
     } else alert("Wrong input");
   };
 
   render() {
-    const { dog } = this.state;
-    if (dog === null) return null;
+    const { cat } = this.state;
+    if (cat === null) return null;
     return (
       <div>
         <div>
@@ -56,7 +56,7 @@ class DogEdit extends Component {
           />
         </div>
         <button onClick={this.handleSave}>Save</button>
-        <Link to={`/dogs`}>
+        <Link to={`/cats`}>
           <button onClick={this.handleSave}>Close</button>
         </Link>
       </div>
@@ -64,4 +64,4 @@ class DogEdit extends Component {
   }
 }
 
-export default DogEdit;
+export default CatEdit;

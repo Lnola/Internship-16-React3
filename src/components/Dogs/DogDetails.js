@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { fetchDogById, deleteDog } from "../../utils";
+import { fetchAnimalById, deleteAnimal } from "../../utils";
 
 class DogDetails extends Component {
   constructor(props) {
@@ -12,14 +12,14 @@ class DogDetails extends Component {
 
   componentDidMount() {
     const { id } = this.props.match.params;
-    fetchDogById(id).then(data => {
+    fetchAnimalById("dogs", id).then(data => {
       this.setState({ dog: data });
     });
   }
 
   handleDelete = () => {
     const { id } = this.state.dog;
-    deleteDog(id);
+    deleteAnimal(id);
   };
 
   render() {

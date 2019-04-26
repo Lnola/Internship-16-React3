@@ -1,24 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { editAnimal, fetchAnimalById } from "../../utils";
+import { saveAnimal } from "../../utils";
 
-class DogEdit extends Component {
+class CatCreate extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      dog: null
-    };
-  }
-
-  componentDidMount() {
-    const { id } = this.props.match.params;
-    fetchAnimalById("dogs", id).then(data => {
-      this.setState({
-        dog: data,
-        name: data.name,
-        description: data.description
-      });
-    });
+    this.state = {};
   }
 
   handleInput = (e, isName) => {
@@ -27,22 +14,20 @@ class DogEdit extends Component {
   };
 
   handleSave = () => {
-    const { dog, name, description } = this.state;
+    const { name, description } = this.state;
     const { history } = this.props;
-    if (name !== "" && description !== "") {
-      editAnimal("dogs", dog.id, this.state.name, this.state.description).then(
-        response => history.push(`/dogs/${response.id}`)
+    if (name !== undefined && description !== undefined)
+      saveAnimal("cats", this.state.name, this.state.description).then(
+        response => history.push(`/cats/${response.id}`)
       );
-    } else alert("Wrong input");
+    else alert("Wrong input");
   };
 
   render() {
-    const { dog } = this.state;
-    if (dog === null) return null;
     return (
       <div>
         <div>
-          <h1>Edit</h1>
+          <h1>Create</h1>
           <span>Name: </span>
           <textarea
             value={this.state.name}
@@ -56,12 +41,12 @@ class DogEdit extends Component {
           />
         </div>
         <button onClick={this.handleSave}>Save</button>
-        <Link to={`/dogs`}>
-          <button onClick={this.handleSave}>Close</button>
+        <Link to={`/cats`}>
+          <button>Close</button>
         </Link>
       </div>
     );
   }
 }
 
-export default DogEdit;
+export default CatCreate;

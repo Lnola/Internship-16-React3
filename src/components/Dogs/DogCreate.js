@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { saveDog } from "../../utils";
+import { saveAnimal } from "../../utils";
 
 class DogCreate extends Component {
   constructor(props) {
@@ -17,8 +17,8 @@ class DogCreate extends Component {
     const { name, description } = this.state;
     const { history } = this.props;
     if (name !== undefined && description !== undefined)
-      saveDog(this.state.name, this.state.description).then(response =>
-        history.push(`/dogs/${response.id}`)
+      saveAnimal("dogs", this.state.name, this.state.description).then(
+        response => history.push(`/dogs/${response.id}`)
       );
     else alert("Wrong input");
   };

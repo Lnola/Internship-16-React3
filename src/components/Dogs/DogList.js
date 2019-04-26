@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { fetchDogs, deleteDog } from "../../utils";
+import { fetchAnimals, deleteAnimal } from "../../utils";
 
 class DogList extends Component {
   constructor(props) {
@@ -11,14 +11,14 @@ class DogList extends Component {
   }
 
   componentDidMount() {
-    fetchDogs().then(data => {
+    fetchAnimals("dogs").then(data => {
       this.setState({ dogList: data });
     });
   }
 
   handleDelete = dog => {
     const { id } = dog;
-    deleteDog(id);
+    deleteAnimal("dogs", id);
   };
 
   render() {
