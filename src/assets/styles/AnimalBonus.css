@@ -1,0 +1,69 @@
+.bonus-wrap {
+  height: 100vh;
+  background-position: center;
+  background-repeat: repeat;
+  background-size: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.input-wrap {
+  border-radius: 10px;
+  background-color: grey;
+  padding: 20px;
+  margin-bottom: 50px;
+}
+
+.input-wrap h1 {
+  color: white;
+}
+
+.input-wrap span {
+  color: white;
+  font-weight: bold;
+}
+
+.input-wrap textarea {
+  height: 16px;
+  border-radius: 10px;
+}
+
+.name {
+  margin-right: 42px;
+}
+
+.input-buttons {
+  margin-left: 100px;
+}
+
+.input-buttons button {
+  background-color: rgba(255, 255, 255, 0.36);
+}
+
+.details {
+  display: inline-block;
+}
+
+.details-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.details-wrapper {
+  max-width: 40%;
+}
+
+.details-indicator {
+  display: inline-block;
+}
+
+.details-buttons {
+  margin-top: 10px;
+  margin-left: -15px;
+}
+
+.details-content {
+  font-weight: normal !important;
+}

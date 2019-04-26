@@ -26,24 +26,28 @@ class DogDetails extends Component {
     const { dog } = this.state;
     if (dog === null) return null;
     return (
-      <div>
-        <div>
-          <h1>Details</h1>
-          <span>Name: </span>
-          <span>{dog.name}</span>
-          <br />
-          <span>Description: </span>
-          <span>{dog.description}</span>
+      <div className="bonus-wrap">
+        <div className="input-wrap details-wrapper">
+          <div className="details-wrap">
+            <h1 className="details">Details</h1>
+            <span className="details-indicator">Name: </span>
+            <span className="details-content">{dog.name}</span>
+            {/* <br /> */}
+            <span className="details-indicator">Description: </span>
+            <span className="details-content">{dog.description}</span>
+          </div>
+          <div className="details-buttons">
+            <Link to={`/dogs/edit/${dog.id}`}>
+              <button>Edit</button>
+            </Link>
+            <Link to="/dogs">
+              <button onClick={this.handleDelete}>Delete</button>
+            </Link>
+            <Link to="/dogs">
+              <button>Close</button>
+            </Link>
+          </div>
         </div>
-        <Link to={`/dogs/edit/${dog.id}`}>
-          <button>Edit</button>
-        </Link>
-        <Link to="/dogs">
-          <button onClick={this.handleDelete}>Delete</button>
-        </Link>
-        <Link to="/dogs">
-          <button>Close</button>
-        </Link>
       </div>
     );
   }

@@ -25,25 +25,29 @@ class DogCreate extends Component {
 
   render() {
     return (
-      <div>
-        <div>
-          <h1>Create</h1>
-          <span>Name: </span>
-          <textarea
-            value={this.state.name}
-            onChange={e => this.handleInput(e, true)}
-          />
-          <br />
-          <span>Description: </span>
-          <textarea
-            value={this.state.description}
-            onChange={e => this.handleInput(e, false)}
-          />
+      <div className="bonus-wrap">
+        <div className="input-wrap">
+          <div>
+            <h1>Create</h1>
+            <span className="name">Name: </span>
+            <textarea
+              value={this.state.name}
+              onChange={e => this.handleInput(e, true)}
+            />
+            <br />
+            <span>Description: </span>
+            <textarea
+              value={this.state.description}
+              onChange={e => this.handleInput(e, false)}
+            />
+          </div>
+          <div className="input-buttons">
+            <button onClick={this.handleSave}>Save</button>
+            <Link to={`/dogs`}>
+              <button>Close</button>
+            </Link>
+          </div>
         </div>
-        <button onClick={this.handleSave}>Save</button>
-        <Link to={`/dogs`}>
-          <button>Close</button>
-        </Link>
       </div>
     );
   }

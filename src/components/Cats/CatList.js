@@ -27,28 +27,34 @@ class CatList extends Component {
 
     this.componentDidMount();
     return (
-      <div>
-        <h1>All cats:</h1>
-        {catList.map((cat, index) => (
-          <div>
-            <span key={index}>{cat.name} </span>
-            <Link to={`/cats/${cat.id}`}>
-              <button>Details</button>
+      <div className="background-wrap">
+        <div className="foreground-wrap">
+          <h1>All cats:</h1>
+          {catList.map((cat, index) => (
+            <div key={index}>
+              <span key={index}>{cat.name} </span>
+              <Link to={`/cats/${cat.id}`}>
+                <button key={index}>Details</button>
+              </Link>
+              <Link to={`/cats/edit/${cat.id}`}>
+                <button key={index}>Edit</button>
+              </Link>
+              <Link to="/cats">
+                <button key={index} onClick={() => this.handleDelete(cat)}>
+                  Delete
+                </button>
+              </Link>
+            </div>
+          ))}
+          <div className="down-buttons">
+            <Link to={`/cats/create`}>
+              <button>Create</button>
             </Link>
-            <Link to={`/cats/edit/${cat.id}`}>
-              <button>Edit</button>
-            </Link>
-            <Link to="/cats">
-              <button onClick={() => this.handleDelete(cat)}>Delete</button>
+            <Link to="/main">
+              <button>Close</button>
             </Link>
           </div>
-        ))}
-        <Link to={`/cats/create`}>
-          <button>Create</button>
-        </Link>
-        <Link to="/main">
-          <button>Close</button>
-        </Link>
+        </div>
       </div>
     );
   }

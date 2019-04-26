@@ -26,24 +26,28 @@ class CatDetails extends Component {
     const { cat } = this.state;
     if (cat === null) return null;
     return (
-      <div>
-        <div>
-          <h1>Details</h1>
-          <span>Name: </span>
-          <span>{cat.name}</span>
-          <br />
-          <span>Description: </span>
-          <span>{cat.description}</span>
+      <div className="bonus-wrap">
+        <div className="input-wrap details-wrapper">
+          <div className="details-wrap">
+            <h1 className="details">Details</h1>
+            <span className="details-indicator">Name: </span>
+            <span className="details-content">{cat.name}</span>
+            {/* <br /> */}
+            <span className="details-indicator">Description: </span>
+            <span className="details-content">{cat.description}</span>
+          </div>
+          <div className="details-buttons">
+            <Link to={`/cats/edit/${cat.id}`}>
+              <button>Edit</button>
+            </Link>
+            <Link to="/cats">
+              <button onClick={this.handleDelete}>Delete</button>
+            </Link>
+            <Link to="/cats">
+              <button>Close</button>
+            </Link>
+          </div>
         </div>
-        <Link to={`/cats/edit/${cat.id}`}>
-          <button>Edit</button>
-        </Link>
-        <Link to="/cats">
-          <button onClick={this.handleDelete}>Delete</button>
-        </Link>
-        <Link to="/cats">
-          <button>Close</button>
-        </Link>
       </div>
     );
   }

@@ -40,25 +40,29 @@ class CatEdit extends Component {
     const { cat } = this.state;
     if (cat === null) return null;
     return (
-      <div>
-        <div>
-          <h1>Edit</h1>
-          <span>Name: </span>
-          <textarea
-            value={this.state.name}
-            onChange={e => this.handleInput(e, true)}
-          />
-          <br />
-          <span>Description: </span>
-          <textarea
-            value={this.state.description}
-            onChange={e => this.handleInput(e, false)}
-          />
+      <div className="bonus-wrap">
+        <div className="input-wrap">
+          <div>
+            <h1>Edit</h1>
+            <span className="name">Name: </span>
+            <textarea
+              value={this.state.name}
+              onChange={e => this.handleInput(e, true)}
+            />
+            <br />
+            <span>Description: </span>
+            <textarea
+              value={this.state.description}
+              onChange={e => this.handleInput(e, false)}
+            />
+          </div>
+          <div className="input-buttons">
+            <button onClick={this.handleSave}>Save</button>
+            <Link to={`/cats`}>
+              <button onClick={this.handleSave}>Close</button>
+            </Link>
+          </div>
         </div>
-        <button onClick={this.handleSave}>Save</button>
-        <Link to={`/cats`}>
-          <button onClick={this.handleSave}>Close</button>
-        </Link>
       </div>
     );
   }

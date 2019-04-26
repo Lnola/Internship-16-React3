@@ -35,11 +35,17 @@ export const saveAnimal = (animalType, newName, newDescription) =>
 
 export const deleteAnimal = (animalType, id) =>
   fetch(`http://localhost:3000/${animalType}/${id}`, {
-    method: "DELETE",
-    body: JSON.stringify({
-      id: id
-    }),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8"
-    }
+    method: "DELETE"
   }).then(response => response.json());
+
+//Doesn't work as intended
+
+const urls = [`http://localhost:3000/dogs/1`, "http://localhost:3000/dogs/2"];
+export const thanosDelete = route =>
+  Promise.all(
+    urls.map(url =>
+      fetch(url, { method: "DELETE" }).then(response => response.json())
+    )
+  ).then(data => {
+    console.log(data);
+  });
