@@ -19,7 +19,8 @@ class CatDetails extends Component {
 
   handleDelete = () => {
     const { id } = this.state.cat;
-    deleteAnimal("cats", id);
+    const { history } = this.props;
+    deleteAnimal("cats", id).then(() => history.push(`/cats`));
   };
 
   render() {
@@ -40,9 +41,7 @@ class CatDetails extends Component {
             <Link to={`/cats/edit/${cat.id}`}>
               <button>Edit</button>
             </Link>
-            <Link to="/cats">
-              <button onClick={this.handleDelete}>Delete</button>
-            </Link>
+            <button onClick={this.handleDelete}>Delete</button>
             <Link to="/cats">
               <button>Close</button>
             </Link>

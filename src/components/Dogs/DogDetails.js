@@ -19,7 +19,8 @@ class DogDetails extends Component {
 
   handleDelete = () => {
     const { id } = this.state.dog;
-    deleteAnimal(id);
+    const { history } = this.props;
+    deleteAnimal("dogs", id).then(response => history.push(`/dogs`));
   };
 
   render() {
@@ -40,9 +41,7 @@ class DogDetails extends Component {
             <Link to={`/dogs/edit/${dog.id}`}>
               <button>Edit</button>
             </Link>
-            <Link to="/dogs">
-              <button onClick={this.handleDelete}>Delete</button>
-            </Link>
+            <button onClick={this.handleDelete}>Delete</button>
             <Link to="/dogs">
               <button>Close</button>
             </Link>

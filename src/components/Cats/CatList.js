@@ -18,14 +18,14 @@ class CatList extends Component {
 
   handleDelete = cat => {
     const { id } = cat;
-    deleteAnimal("cats", id);
+    deleteAnimal("cats", id).then(() => this.componentDidMount());
   };
 
   render() {
     const { catList } = this.state;
     if (catList === null) return null;
 
-    this.componentDidMount();
+    // this.componentDidMount();
     return (
       <div className="background-wrap">
         <div className="foreground-wrap">

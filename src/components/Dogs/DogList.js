@@ -18,33 +18,41 @@ class DogList extends Component {
 
   handleDelete = dog => {
     const { id } = dog;
-    deleteAnimal("dogs", id);
+    deleteAnimal("dogs", id).then(() => this.componentDidMount());
   };
 
-  //Doesn't work as intended
+  //The part that doesn't work as intended
 
-  // handleThanosDelete = () => {
-  //   const { dogList } = this.state;
-  //   const min = 1;
-  //   const max = dogList.length;
-  //   let deletedIdArray = [];
+  handleThanosDelete = () => {
+    const { dogList } = this.state;
+    const min = 1;
+    const max = dogList.length;
+    let deletedIdArray = [];
 
-  //   for (let i = 1; i <= dogList.length / 2; i++) {
-  //     let rand = parseInt(min + Math.random() * (max - min), 10);
-  //     for (let j = 1; j <= dogList.length; j++) {
-  //       if (rand === j && !deletedIdArray.includes(j)) {
-  //         deletedIdArray.push(j);
-  //       }
-  //     }
-  //   }
+    for (let i = 1; i <= dogList.length / 2; i++) {
+      let rand = parseInt(min + Math.random() * (max - min), 10);
+      if (!deletedIdArray.includes(rand))
+        for (let j = 1; j <= dogList.length; j++) {
+          if (rand === j && !deletedIdArray.includes(j)) {
+            deletedIdArray.push(j);
+          }
+        }
+      else {
+        i--;
+      }
+    }
+    console.log(deletedIdArray);
 
-  //   console.log(deletedIdArray);
+    let urls = [];
 
-  //   deletedIdArray.forEach(number => {
-  //     // this.handleDelete(dogList[number]);
-  //     console.log(number);
-  //   });
-  // };
+    deletedIdArray.forEach(number => {
+      // this.handleDelete(dogList[number]); // prvi pokusaj priko poziva postojece funkcije deleteAnimal
+
+      urls.push(`http://localhost:3000/dogs/${number}`); // drugi pokusaj priko nove funkcije thanosDelete
+      console.log(urls);
+    });
+    // thanosDelete(urls);
+  };
 
   render() {
     const { dogList } = this.state;

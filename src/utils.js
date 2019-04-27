@@ -39,9 +39,7 @@ export const deleteAnimal = (animalType, id) =>
   }).then(response => response.json());
 
 //Doesn't work as intended
-
-const urls = [`http://localhost:3000/dogs/1`, "http://localhost:3000/dogs/2"];
-export const thanosDelete = route =>
+export const thanosDelete = urls =>
   Promise.all(
     urls.map(url =>
       fetch(url, { method: "DELETE" }).then(response => response.json())
